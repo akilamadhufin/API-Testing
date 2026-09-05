@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+
+# Local environments and secrets
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Robot Framework generated reports
+results/
+output.xml
+log.html
+report.html
+
+# Test and tool caches
+.pytest_cache/
+.mypy_cache/
+.coverage
+
+# Local editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
