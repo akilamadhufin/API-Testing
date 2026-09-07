@@ -42,7 +42,7 @@ pipeline {
         }
         success {
             slackSend(
-                channel: '#qa-team',
+                channel: 'C0C00AD2TNZ',
                 color: 'good',
                 failOnError: false,
                 message: "API-Testing-Pipeline SUCCESS - View log.html: ${env.BUILD_URL}artifact/openweather_api_automation/developer_style_API_testing/results/log.html"
@@ -50,7 +50,7 @@ pipeline {
         }
         failure {
             slackSend(
-                channel: '#qa-team',
+                channel: 'C0C00AD2TNZ',
                 color: 'danger',
                 failOnError: false,
                 message: "API-Testing-Pipeline FAILED - Check console: ${env.BUILD_URL}console"
