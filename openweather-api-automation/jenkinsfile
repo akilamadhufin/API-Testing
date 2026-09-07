@@ -1,0 +1,31 @@
+pipeline {
+    agent { label 'agent-node' }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/akilamadhufin/API-Testing.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install robotframework'
+                sh 'pip install robotframework-requests'
+                sh 'pip install robotframework-jsonlibrary'
+            }
+        }
+
+        stage('Run API Tests') {
+            steps {
+                sh 'robot .'
+            }
+        }
+
+        stage('Archive Results') {
+            steps {
+                archiveArtifacts artifacts: 'output.xml, report.html, log.html', fingerprint: true
+            }
+        }
+    }
+}
