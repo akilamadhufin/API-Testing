@@ -27,7 +27,7 @@ pipeline {
 
     post {
         always {
-            publishRobotFrameworkReports 'openweather_api_automation/developer_style_API_testing/results'
+            robot outputPath: 'openweather_api_automation/developer_style_API_testing/results'
             archiveArtifacts artifacts: 'openweather_api_automation/developer_style_API_testing/results/**', allowEmptyArchive: true, fingerprint: true
         }
     }
