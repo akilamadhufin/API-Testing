@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/akilamadhufin/API-Testing.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 dir('openweather-api-automation') {
@@ -22,8 +16,8 @@ pipeline {
 
         stage('Run API Tests') {
             steps {
-                dir('openweather-api-automation/Robot‑native API testing') {
-                    withCredentials([string(credentialsId: 'openweather-api-key', variable: 'OPENWEATHER_API_KEY')]) {
+                dir('openweather-api-automation/developer‑style API testing') {
+                    withCredentials([string(credentialsId: 'openweather-api-key', variable: 'OpenWeather_API_KEY')]) {
                         sh 'python3 -m robot -i smoke -L TRACE -d results TestCases'
                     }
                 }
@@ -33,7 +27,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'openweather-api-automation/Robot‑native API testing/results/*', allowEmptyArchive: true, fingerprint: true
+            archiveArtifacts artifacts: 'openweather-api-automation/developer‑style API testing/results/*', allowEmptyArchive: true, fingerprint: true
         }
     }
 }
