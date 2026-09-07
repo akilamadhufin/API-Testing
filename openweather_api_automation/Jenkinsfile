@@ -27,6 +27,14 @@ pipeline {
 
     post {
         always {
+            publishHTML(target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'openweather_api_automation/developer_style_API_testing/results',
+                reportFiles: 'log.html',
+                reportName: 'Robot Framework Log'
+            ])
             archiveArtifacts artifacts: 'openweather_api_automation/developer_style_API_testing/results/*', allowEmptyArchive: true, fingerprint: true
         }
     }
