@@ -4,7 +4,7 @@ Library    Collections
 
 *** Variables ***
 ${BASE_URL}    https://api.openweathermap.org/data/2.5
-${API_KEY}     ${ENV:OPENWEATHER_API_KEY}
+${API_KEY}     %{OPENWEATHER_API_KEY}
 
 *** Test Cases ***
 Valid City Returns 200 And Has Name

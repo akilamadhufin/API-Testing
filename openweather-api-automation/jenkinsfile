@@ -1,6 +1,10 @@
 pipeline {
     agent { label 'agent-node' }
 
+    options {
+        timestamps()
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,22 +14,26 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip install robotframework'
-                sh 'pip install robotframework-requests'
-                sh 'pip install robotframework-jsonlibrary'
+                dir('Robot‑native API testing') {
+                    sh 'python3 -m pip install -r requirements.txt'
+                }
             }
         }
 
         stage('Run API Tests') {
             steps {
-                sh 'robot .'
+                dir('Robot‑native API testing') {
+                    withCredentials([string(credentialsId: 'openweather-api-key', variable: 'OPENWEATHER_API_KEY')]) {
+                        sh 'python3 -m robot -i smoke -L TRACE -d results TestCases'
+                    }
+                }
             }
         }
+    }
 
-        stage('Archive Results') {
-            steps {
-                archiveArtifacts artifacts: 'output.xml, report.html, log.html', fingerprint: true
-            }
+    post {
+        always {
+            archiveArtifacts artifacts: 'Robot‑native API testing/results/*', allowEmptyArchive: true, fingerprint: true
         }
     }
 }
