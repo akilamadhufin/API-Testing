@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'agent-node' }
+    agent { label 'robot' }
 
     options {
         timestamps()
