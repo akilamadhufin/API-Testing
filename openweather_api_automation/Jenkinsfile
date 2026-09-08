@@ -18,7 +18,7 @@ pipeline {
             steps {
                 dir('openweather_api_automation/developer_style_API_testing') {
                     withCredentials([string(credentialsId: 'openweather_api_key', variable: 'OpenWeather_API_KEY')]) {
-                        sh 'python3 -m robot -i smoke -L TRACE -d results TestCases'
+                        sh 'python3 -m robot -i smoke -L INFO -d results TestCases'
                     }
                 }
             }
