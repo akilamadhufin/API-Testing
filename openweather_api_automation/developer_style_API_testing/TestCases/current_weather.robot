@@ -14,7 +14,7 @@ Valid City Returns 200 And Has Name
 
 Validate Current Weather Response Matches Schema
     [Documentation]    Verify that a valid current-weather response matches the JSON Schema
-    [Tags]    schema    API
+    [Tags]    schema    API    smoke
     ${resp}=    Get Current Weather Response For City    Tampere
     Should Be Equal As Integers    ${resp.status_code}    200
     ${json}=    Set Variable    ${resp.json()}

@@ -11,7 +11,7 @@ def validate_json_schema (response, schema_path):
         return True
 
     except ValidationError as error:
-        field_path = "".join(str(part) for part in error.absolute_path)
+        field_path = ".".join(str(part) for part in error.absolute_path)
         location = field_path or "response root"
         raise AssertionError(
             f"schema validation failed at '{location}':{error.message}"
