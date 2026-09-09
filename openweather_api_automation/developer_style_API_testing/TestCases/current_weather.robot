@@ -12,3 +12,13 @@ Valid City Returns 200 And Has Name
     Should Contain    ${json}    name
     Should Be Equal    ${json['name']}    Tampere
 
+Validate Current Weather Response Matches Schema
+    [Documentation]    Verify that a valid current-weather response matches the JSON Schema
+    [Tags]    schema    API
+    ${resp}=    Get Current Weather Response For City    Tampere
+    Should Be Equal As Integers    ${resp.status_code}    200
+    ${json}=    Set Variable    ${resp.json()}
+    ${schema_path}=    Set Variable     ${EXECDIR}/schemas/current_weather_schema.json
+    Validate Current Weather JSON Against Schema    ${json}    ${schema_path}        
+
+
